@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-​
-<script>
-​
-var request;
-if(window.XMLHttpRequest){
-  request = new XMLHttpRequest();
-}else {
-  request = new ActiveXObject("Microsoft.XMLHTTP");
-}
-var data = 'curl http://api.fundsofhope.org/projects/all';
-alert(data);
-request.open('GET', 'http://api.fundsofhope.org/projects/all');
-request.onreadystatechange = function(){
-  if ((request.readyState==4)&&(request.status==200)) {
-    var items = JSON.parse(request.responseText);
-    console.log(items);
-  }
-}
-request.send();
-​
-</script>
-</head>
 <body>
-​
+
+<div id="demo"><h2>Let AJAX change this text</h2></div>
+
+<button type="button" onclick="loadDoc()">Change Content</button>
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      document.getElementById("demo").innerHTML = xhttp.responseText;
+    }
+  };
+  xhttp.open("GET", "http://api.fundsofhope.org/projects/all", true);
+  xhttp.send();
+}
+</script>
+
 </body>
+</html>
+
